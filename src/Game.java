@@ -9,10 +9,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
     public Node[] nodeSnake=new Node[10];
     public boolean left, right, up, down;
 
-    public int tam=480;
+    public int tam=480      ;
     public int score=0;
     public int appleX=0, appleY=0;
-    public int spd= 1/2;
+    public int spd=1;
     public Game(){
         this.setPreferredSize(new Dimension(tam,tam));
         for(int i=0; i<nodeSnake.length;i++){
@@ -24,6 +24,17 @@ public class Game extends Canvas implements Runnable, KeyListener {
         for(int i=nodeSnake.length-1;i>0;i--){
             nodeSnake[i].x=nodeSnake[i-1].x;
             nodeSnake[i].y=nodeSnake[i-1].y;
+        }
+
+        if(nodeSnake[0].x+10<0){
+            nodeSnake[0].x=tam;
+        }else if(nodeSnake[0].x>=tam){
+            nodeSnake[0].x=-10;
+        }
+        if(nodeSnake[0].y+10<0){
+            nodeSnake[0].y=tam;
+        }else if(nodeSnake[0].y>=tam){
+            nodeSnake[0].y=-10;
         }
 
         if(right){
